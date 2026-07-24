@@ -16,6 +16,26 @@ Nació para mantener eficiente la memoria de sesión de un asistente de IA en un
 larga duración, pero el patrón en sí no tiene nada de específico de IA — funciona igual para una persona que
 abre el repo a las 9am y pregunta "¿qué pasó en facturación esta semana?".
 
+Beneficio real y medible, no solo teórico 
+El dato real: cuando el agente tuvo que leer tu bitácora vieja (206 KB / 1311 líneas), el sistema reportó 96.784 tokens para leer solo 287 de esas 1311 líneas — proyectado al archivo completo, son ~440.000 tokens solo para "ponerse al día" antes de poder responder nada. Contra eso: la consulta "qué hice la última semana" que hicimos recién con el esquema nuevo leyó unas 12 líneas de índice, unos cientos de tokens.
+
+Sirve para que consultar el historial del proyecto sea rápido y barato, en vez de tener que releer todo cada vez.
+
+Ejemplo concreto:
+
+Antes: un solo archivo bitacora.md que crece sesión tras sesión. Preguntás "¿qué hice ayer en el módulo de pagos?" y el asistente tiene que leer TODO el archivo (aunque tenga 200 páginas) para encontrar esa respuesta.
+Con Shardlog: hay una carpeta pagos/ con un _index.md de 5 líneas (una por día trabajado) + un archivo por fecha con el detalle. Preguntás lo mismo y el asistente lee solo esas 5 líneas, y si necesita más detalle, abre un solo archivo puntual — no los 200 anteriores.
+Mismo principio que separar un changelog gigante en carpetas por tema y por día, en vez de un PDF único que hay que escanear entero cada vez que buscás algo.
+
+Por qué te importa pagando Pro (Claude, GPT, etc.):
+
+Los planes Pro no son ilimitados — tienen tope de mensajes/tokens por ventana de tiempo (ej. cada 5hs, o semanal). Cada token que se gasta releyendo historial viejo es un token que no vas a tener disponible para codear de verdad.
+Evitás quedarte sin contexto a mitad de sesión — un archivo enorme se come rápido la ventana de contexto del modelo, y ahí el sistema tiene que "compactar" (resumir) la conversación — literalmente pasó en esta misma sesión por lo larga que se puso. Con archivos chicos por módulo/fecha, eso tarda mucho más en pasar.
+Respuestas más rápidas — menos tokens de entrada = menos tiempo de procesamiento por respuesta.
+El proyecto puede crecer para siempre sin que el costo de consultarlo también crezca — a los 6 meses seguís pagando lo mismo por preguntar "qué hice ayer", en vez de cada vez más caro.
+Es plata/cuota real de tu suscripción, no solo prolijidad.
+
+
 ## Índice
 
 - [El problema](#el-problema)
@@ -147,5 +167,14 @@ archivo de fecha nuevo es un paso natural una vez que el patrón se siente cómo
 Migrado desde un archivo único de más de 1300 líneas sin perder un solo dato registrado — dividido en
 archivos por módulo y fecha con índices en cada nivel, en una sola pasada, con el original conservado
 congelado como respaldo verificado. Así es como el patrón funciona en la práctica.
+
+"Para el manejo de bitácora/historial del proyecto usá el esquema de Shardlog: github.com/ovazapadev/shardlog-indexedlog. Leé el README y pegale el prompt de PROMPT.md (o PROMPT.es.md) a tu asistente de IA al arrancar — así queda todo organizado por módulo/fecha en vez de un solo archivo gigante."
+
+Acordate , te va a facilitar la vida al desarrollar grandes proyectos. Podes tener Obsidian , Graphify , etc etc etc . Pero esto es tuyo dentro de tu proyecto , le decis como queres trabaje con bitacora , es decir le decis cada tanto *bitacora --> la IA entiende que debe guardar lo que creaste con las referencias de la programacion solicitada. Mañana le preguntas que hice , y ahi esta la magia. No gasta millones de Tokens en la busqueda. Es algo similar a Grafos , PERO NO . Probalo y despues me contas. 
+
+Suerte con tu proyecto - www.arraysoft.com.ar  arraysoft.sj@gmail.com
+Ova Zapa. 
+
+
 
 🇬🇧 English version: [`README.md`](README.md)
