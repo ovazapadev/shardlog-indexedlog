@@ -1,6 +1,6 @@
 # Shardlog
 
-**Un patrón de changelog modular que mantiene el historial de un proyecto rápido de consultar — tanto para personas como para agentes de IA que programan.**
+**Un patrón de changelog modular que mantiene el historial de un proyecto rápido de consultar — tanto para personas como para agentes de IA que programan. ejemplo Claude Code -Para proyectos grandes sin usar herramientas de Grafos , mas practico y mas agil a tu proyecto **
 
 [![Pattern](https://img.shields.io/badge/tipo-patr%C3%B3n%20de%20ingenier%C3%ADa-blue)](#)
 [![Stack](https://img.shields.io/badge/stack-agn%C3%B3stico-lightgrey)](#)
